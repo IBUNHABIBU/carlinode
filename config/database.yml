@@ -86,6 +86,6 @@ production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
   database: carlinode_production
-  username: events_booking
-  password: <%= ENV['EVENT_BOOKING_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: <%= ENV['CARLINODE_DATABASE_PASSWORD'] %>
   
