@@ -131,4 +131,4 @@ Rails.application.configure do
 end
 
 # Rails.application.routes.default_url_options = { host: 'https://atown-rentals.onrender.com' }
-Rails.application.routes.default_url_options = { host: 'https://atown-rentals.onrender.com' }
+Rails.application.routes.default_url_options = { host: 'http://car.darlive.cyou/' }
