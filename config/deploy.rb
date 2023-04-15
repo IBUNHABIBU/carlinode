@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.1"
 
-set :application, "ukandablog"
-set :repo_url, "https://github.com/IBUNHABIBU/ukandablog.git"
+set :application, "carlinode"
+set :repo_url, "https://github.com/IBUNHABIBU/carlinode.git"
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deployer/#{fetch :application}"
