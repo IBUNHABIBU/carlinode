@@ -156,6 +156,10 @@ setting enviroment variables in heroku I used heroku config:set RAILS_MASTER_KEY
 
 
 
+to obtain letsencrypt certificate I used the command
+`sudo certbot --nginx -d subdomain.darlive.cyou`
+
+
 ## Authors
 
 👤 **Salum Habibu** 
