@@ -7,11 +7,13 @@ class Car < ApplicationRecord
 
   def imageUrl
     # image.blob.service_url if image.attached?
-    Rails.application.routes.url_helpers.url_for(image) if image.attached?
+    # Rails.application.routes.url_helpers.url_for(image) if image.attached?
     # if image.attached?
     #   cl_image_path(self.image.key, width: 300, height: 300, crop: :fill)
     #   # Cloudinary::Utils.cloudinary_url(image)
     # end
-    
+    if image.present? && image.attached?
+      Rails.application.routes.url_helpers.url_for(image)
+    end
   end
 end
