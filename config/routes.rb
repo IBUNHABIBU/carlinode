@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       get "cars/recent", to: "cars#index", scope: "recent"
       resources :cars
       resources :bookings
+      resources :projects
+      resources :skills
     end
   end
   delete :logout, to: "sessions#logout"
