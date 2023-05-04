@@ -1,5 +1,4 @@
 class Car < ApplicationRecord
-  include CloudinaryHelper
   has_one_attached :image
   validates :color, :engine, :year, :title, :price, :image, presence: true
 
