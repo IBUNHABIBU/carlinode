@@ -7,7 +7,7 @@ class Car < ApplicationRecord
   def imageUrl
 
     if image.present? && image.attached?
-      Rails.application.routes.url_helpers.url_for(image)
+      image.blob.service_url if image.attached?
     end
   end
 end
