@@ -165,7 +165,13 @@ to see nginx logs
 to see the logs of the app
 `sudo tail -f /var/log/syslog`
 
-to see production logs
+to see production logs in Linux
+`sudo tail -f /var/log/nginx/access.log`
+
+to view rails log 
+`sudo tail -f /var/log/syslog | grep rails`
+
+`less /home/deploy/myapp/current/log/production.log`
 
 
 ## Authors
