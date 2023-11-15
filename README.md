@@ -160,6 +160,8 @@ to obtain letsencrypt certificate I used the command
 
 `sudo certbot --nginx -d subdomain.darlive.cyou`
 
+i.e `sudo certbot --nginx -d car.darlive.cyou`
+
 to see nginx logs 
 
 `sudo tail -f /var/log/nginx/error.log`
