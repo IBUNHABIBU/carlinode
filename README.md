@@ -174,9 +174,7 @@ to see production logs in Linux
 
 to view rails log
 
-`sudo tail -f /var/log/syslog | grep rails`
-
-`less /home/deploy/myapp/current/log/production.log`
+`sudo tail -f /var/log/syslog | grep rails less /home/deployer/carlinode/current/log/production.log`
 
 
 ## Authors
