@@ -157,18 +157,23 @@ setting enviroment variables in heroku I used heroku config:set RAILS_MASTER_KEY
 
 
 to obtain letsencrypt certificate I used the command
+
 `sudo certbot --nginx -d subdomain.darlive.cyou`
 
 to see nginx logs 
+
 `sudo tail -f /var/log/nginx/error.log`
 
 to see the logs of the app
+
 `sudo tail -f /var/log/syslog`
 
 to see production logs in Linux
+
 `sudo tail -f /var/log/nginx/access.log`
 
-to view rails log 
+to view rails log
+
 `sudo tail -f /var/log/syslog | grep rails`
 
 `less /home/deploy/myapp/current/log/production.log`
