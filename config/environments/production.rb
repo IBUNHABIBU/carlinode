@@ -25,17 +25,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "smtp.railway.app",
-    port: 587,
-    domain: "https://web-production-6ac38.up.railway.app/",
-    authentication: "plain",
-    user_name: ENV["RAILWAY_SMTP_USERNAME"],
-    password: ENV["RAILWAY_SMTP_PASSWORD"],
-    enable_starttls_auto: true
-  }
-
+  
   # Serve static assets in production.
   config.public_file_server.enabled = true
   # config.public_file_server.enabled = true
@@ -131,4 +121,4 @@ Rails.application.configure do
 end
 
 # Rails.application.routes.default_url_options = { host: 'https://atown-rentals.onrender.com' }
-Rails.application.routes.default_url_options = { host: 'http://car.darlive.cyou' }
+Rails.application.routes.default_url_options = { host: 'https://car.darlive.cyou' }
