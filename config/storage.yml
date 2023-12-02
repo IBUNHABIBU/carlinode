@@ -5,6 +5,11 @@ test:
 local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
+  host: "https://car.darlive.cyou"
+
+production:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
   host: "http://localhost:3000"
 
 cloudinary: 
