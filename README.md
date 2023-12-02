@@ -130,6 +130,14 @@ Navigate to the project folder make sure Rspec is installed and then run the fol
 
 <!-- ### How to play -->
 
+## DB migration in production
+`rake db:drop db:create db:migrate`
+
+`rake db:seed`
+
+`rake assets:precompile`
+`rake tmp:clear`
+
 
 ### Challenges
 1. 
