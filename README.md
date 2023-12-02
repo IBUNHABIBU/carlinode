@@ -127,6 +127,7 @@ Navigate to the project folder make sure Rspec is installed and then run the fol
 | `bundle exec rspec` | Run rspec tests |
 | `EDITOR='code --wait' rails credentials:edit` | Edit credentials |
 | `bundle exec rspec -f d` | run test |
+| `cap production deploy` | Deploy the application to production |
 
 <!-- ### How to play -->
 
