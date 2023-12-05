@@ -18,7 +18,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'cloudinary'
-gem 'rack-cors', require: 'rack/cors'
+# gem 'rack-cors', require: 'rack/cors'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
@@ -26,7 +26,7 @@ gem 'mini_magick'
 gem 'bootsnap', '>= 1.13.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
