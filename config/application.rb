@@ -44,5 +44,8 @@ module EventsBooking
 
   config.middleware.use config.session_store, config.session_options
 
+  config.middleware.use Rack::Cors
+
+
   end
 end
