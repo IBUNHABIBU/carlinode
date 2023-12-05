@@ -46,6 +46,5 @@ module EventsBooking
 
   config.middleware.use Rack::Cors
 
-
   end
 end
