@@ -176,7 +176,7 @@ sudo certbot --nginx -d car.darlive.cyou
 
 to see nginx logs 
 
-`sudo tail -f /var/log/nginx/error.log`
+`sudo tail -f /var/log/nginx/error.log`   then type shift + G to go down to the very bottom of the error logs
 
 to see the logs of the app
 
