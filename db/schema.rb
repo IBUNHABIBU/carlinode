@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_24_161932) do
-
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_203802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,7 +31,7 @@ ActiveRecord::Schema.define(version: 2023_08_24_161932) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.string "checksum"
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -49,16 +48,16 @@ ActiveRecord::Schema.define(version: 2023_08_24_161932) do
     t.datetime "pickup"
     t.datetime "return_date"
     t.string "location"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cars", force: :cascade do |t|
     t.string "color"
     t.string "engine"
     t.string "year"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "title"
     t.string "price"
     t.string "description"
@@ -68,8 +67,8 @@ ActiveRecord::Schema.define(version: 2023_08_24_161932) do
     t.string "name"
     t.string "location"
     t.decimal "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "description"
     t.datetime "starts_at"
   end
@@ -79,22 +78,22 @@ ActiveRecord::Schema.define(version: 2023_08_24_161932) do
     t.string "github"
     t.string "demo"
     t.string "languages"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "admin", default: false
   end
 
