@@ -63,3 +63,4 @@ gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem 'net-ssh'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
+gem "kamal", "~> 2.3.0"
