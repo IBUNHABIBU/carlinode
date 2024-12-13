@@ -61,6 +61,9 @@ RUN chmod +x bin/*
 # Precompile assets
 RUN SECRET_KEY_BASE=dummy_key ./bin/rails assets:precompile
 
+COPY bin/docker-entrypoint /rails/bin/docker-entrypoint
+RUN chmod +x /rails/bin/docker-entrypoint
+
 # Final production image
 FROM base
 
