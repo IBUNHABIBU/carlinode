@@ -52,9 +52,20 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4 --retry 3 && \
     rm -rf "${BUNDLE_PATH}/ruby/*/cache" "${BUNDLE_PATH}/ruby/*/bundler/gems/*/.git"
 
-# COPY package*json ./
-# COPY yarn.* ./
-# RUN yarn install
+# Install dependencies
+RUN apt-get update -qq && apt-get install -y \
+  nodejs \
+  npm
+
+# Install Yarn
+RUN npm install -g yarn
+
+# Copy over dependency files
+COPY package*json ./
+COPY yarn.* ./ 
+
+# Install JavaScript dependencies
+RUN yarn install
 
 #######################################################################
 
