@@ -52,9 +52,9 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4 --retry 3 && \
     rm -rf "${BUNDLE_PATH}/ruby/*/cache" "${BUNDLE_PATH}/ruby/*/bundler/gems/*/.git"
 
-COPY package*json ./
-COPY yarn.* ./
-RUN yarn install
+# COPY package*json ./
+# COPY yarn.* ./
+# RUN yarn install
 
 #######################################################################
 
