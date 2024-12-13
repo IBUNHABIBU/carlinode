@@ -10,76 +10,53 @@ FROM ruby:$RUBY_VERSION-slim AS base
 WORKDIR /rails
 
 # Add sources and configure APT for HTTPS
-# Recreate /etc/apt/sources.list if missing
 RUN echo "deb https://deb.debian.org/debian bookworm main" > /etc/apt/sources.list && \
     echo "deb https://deb.debian.org/debian bookworm-updates main" >> /etc/apt/sources.list && \
     echo "deb https://security.debian.org/debian-security bookworm-security main" >> /etc/apt/sources.list
 
-# Update package sources and install dependencies
-RUN apt-get update -qq || (sleep 30 && apt-get update -qq) && \
-    apt-get install --no-install-recommends -y \
+# Install runtime dependencies
+RUN apt-get update -qq && apt-get install --no-install-recommends -y \
     libjemalloc2 \
     libvips \
     postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
 
-
-# Set production environment variables
+# Environment variables
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development test"
 
-# Install runtime dependencies
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y libjemalloc2 libvips postgresql-client && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
 # Multi-stage build for gems and assets
 FROM base AS build
 
 # Install build tools for native gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends --fix-missing -y \
+RUN apt-get update -qq && apt-get install --no-install-recommends -y \
     build-essential \
     git \
     libpq-dev \
-    pkg-config && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    pkg-config \
+    nodejs \
+    npm && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
+
+# Install Yarn
+RUN npm install -g yarn
 
 # Copy Gemfile and install gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --jobs 4 --retry 3 && \
     rm -rf "${BUNDLE_PATH}/ruby/*/cache" "${BUNDLE_PATH}/ruby/*/bundler/gems/*/.git"
 
-# Install dependencies
-RUN apt-get update -qq && apt-get install -y \
-  nodejs \
-  npm
-
-# Install Yarn
-RUN npm install -g yarn
-
-# Copy over dependency files
-COPY package*json ./
-COPY yarn.* ./ 
+# Copy JavaScript dependency files
+COPY package*json yarn.* ./
 
 # Install JavaScript dependencies
 RUN yarn install
 
-#######################################################################
-
-# Deploy your application
-COPY . .
-
-# Set executable permissions for bin/rails and other bin/* scripts
+# Copy application code and set permissions
+COPY . ./
 RUN chmod +x bin/*
-
-# Precompile assets
-RUN SECRET_KEY_BASE=dummy_key ./bin/rails assets:precompile
-
-COPY bin/docker-entrypoint /rails/bin/docker-entrypoint
-RUN chmod +x /rails/bin/docker-entrypoint
 
 # Precompile assets
 RUN SECRET_KEY_BASE=dummy_key ./bin/rails assets:precompile
@@ -87,15 +64,14 @@ RUN SECRET_KEY_BASE=dummy_key ./bin/rails assets:precompile
 # Final production image
 FROM base
 
-# Copy dependencies and application code
+# Copy dependencies and application code from build stage
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
 # Create non-root user
 RUN groupadd --system --gid 999 rails && \
     useradd --system --uid 999 --gid 999 --create-home --shell /bin/bash rails && \
-    mkdir -p /rails/db /rails/log /rails/storage /rails/tmp && \
-    chown -R rails:rails /rails db log storage tmp
+    chown -R rails:rails /rails
 
 USER rails
 
