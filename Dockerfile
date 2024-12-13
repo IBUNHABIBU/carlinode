@@ -59,7 +59,7 @@ COPY . ./
 RUN chmod +x bin/*
 
 # Precompile assets
-# RUN SECRET_KEY_BASE=dummy_key ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE=dummy_key ./bin/rails assets:precompile
 
 # Final production image
 FROM base
