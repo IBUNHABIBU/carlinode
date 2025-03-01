@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://salum-microverse-final-capstone.netlify.app'
+    origins 'https://salum-microverse-final-capstone.netlify.app', 'https://hysan.writehub.cyou', 'http://localhost:3006'
 
     resource "*",
       headers: :any,
